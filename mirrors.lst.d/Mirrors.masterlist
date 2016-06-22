@@ -1,0 +1,11 @@
+Site: de-download.proxmox.com
+Type: leaf
+Archive-architecture: amd64 
+Archive-http: /debian/
+Country: DE Germany
+
+Site: prgmr.com
+Type: leaf
+Archive-architecture: amd64 
+Archive-http: /debian/
+Country: US United States
