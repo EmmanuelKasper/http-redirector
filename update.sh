@@ -161,11 +161,11 @@ fi
 
 if $mirrors; then
 
-    cd mirrors.lst.d
-    wget $cadebian -O Mirrors.masterlist.new \
-	'https://anonscm.debian.org/viewvc/webwml/webwml/english/mirror/Mirrors.masterlist?view=co'
-    mv Mirrors.masterlist.new Mirrors.masterlist
-    cd - >/dev/null
+    #cd mirrors.lst.d
+    #wget $cadebian -O Mirrors.masterlist.new \
+#	'https://anonscm.debian.org/viewvc/webwml/webwml/english/mirror/Mirrors.masterlist?view=co'
+    #mv Mirrors.masterlist.new Mirrors.masterlist
+    #cd - >/dev/null
 
     ./build-main-db.pl --db-output db.wip
     if $peers; then
