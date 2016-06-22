@@ -135,12 +135,8 @@ for my $entry (@data) {
 
 $cv->recv;
 
-if (!exists($db4->{'archive'}{'arch'}{'i386'}) || scalar(keys %{$db4->{'archive'}{'arch'}{'i386'}}) < 10) {
-    print STDERR "error: not even 10 mirrors with i386 found on the archive list, not saving\n";
-} else {
-    Mirror::DB::set($db_output);
-    Mirror::DB::store(\%full_db);
-}
+Mirror::DB::set($db_output);
+Mirror::DB::store(\%full_db);
 
 exit;
 
