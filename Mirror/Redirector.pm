@@ -508,7 +508,9 @@ sub run {
 	} else {
 	    $rcode = 302;
 	}
-	$res->redirect(url_for_mirror($host).$real_url, $rcode);
+	my $target = url_for_mirror($host).$real_url;
+	$res->redirect($target, $rcode);
+	print STDERR join('', 'next log entry is redirected to: ', $target, "\n");
 	return;
     }
 
