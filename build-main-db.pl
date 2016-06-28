@@ -245,12 +245,11 @@ sub query_dns_for_entry($) {
 	    delete $entry->{$type.'-unlisted-http'};
 	}
 
-	next unless (exists($entry->{$type.'-http'}));
-
+	next unless (defined($entry->{$type.'-http'}) || defined($entry->{$type.'-https'}));
 	$got_http = 1;
     }
     unless ($got_http) {
-	print "info: $entry->{'site'} is not an HTTP mirror, skipping\n"
+	print "info: $entry->{'site'} is not an HTTP(S) mirror, skipping\n"
 	    if ($verbose);
 	return 0;
     }
@@ -452,7 +451,7 @@ sub process_entry_common($$$$$@) {
 	    next;
 	}
 
-	next unless (defined($entry->{$type.'-http'}));
+	next unless (defined($entry->{$type.'-http'}) || defined($entry->{$type.'-https'}));
 
 	if (!defined($entry->{$type.'-architecture'}) && $type eq 'archive') {
 	    print STDERR "warning: no $type-architecture list for $name\n";
@@ -509,7 +508,7 @@ sub process_entry_common($$$$$@) {
 	trace-file
     );
     for my $key (keys %{$entry}) {
-	next if ($key =~ m/-http$/);
+	next if ($key =~ m/-https?$/);
 	next if ($key =~ m/-reference$/);
 
 	if (defined($wanted_fields{$key})) {
