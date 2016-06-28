@@ -470,7 +470,15 @@ sub run {
 	my $id = shift;
 	return '' unless (length($id));
 	my $mirror = $db->{'all'}{$id};
-	return "http://".$mirror->{'site'}.$mirror->{$mirror_type.'-http'};
+	my $hostname = $mirror->{'site'};
+	my $path;
+
+	if (defined ($path = $mirror->{$mirror_type.-'http'})) {
+	    return "http://".$hostname.$path;
+	}
+	elsif (defined ($path = $mirror->{$mirror_type.-'https'})) {
+	    return "https://".$hostname.$path;
+	}
     }
 
     sub do_redirect($$) {
