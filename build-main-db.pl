@@ -36,8 +36,7 @@ use AnyEvent::DNS;
 my $input_dir = 'mirrors.lst.d';
 my $db_store = 'db';
 my $db_output = $db_store;
-my @mirror_types = qw(www volatile archive old nonus
-			backports security cdimage ports);
+my @mirror_types = ('archive');
 my %exclude_mirror_types = map { $_ => 1 } qw(nonus www volatile cdimage);
 
 # Options:
